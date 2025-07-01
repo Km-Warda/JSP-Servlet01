@@ -7,7 +7,7 @@
 </head>
 <body>
 
-    <form action="printDataForm.jsp" method="post">
+    <form action="handle-form" method="post">
         <h2>Registration Form</h2>
 
         <label>First Name:</label>

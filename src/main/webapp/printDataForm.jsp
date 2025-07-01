@@ -7,23 +7,23 @@
 </head>
 <body>
     <div class="container">
-        <h2>Submitted Form Data:</h2>
+        <h2>Submitted Form Data (Stored in Session)</h2>
 
-        <div class="output-block"><strong>First Name:</strong> <%= request.getParameter("f_name") %></div>
-        <div class="output-block"><strong>Last Name:</strong> <%= request.getParameter("l_name") %></div>
-        <div class="output-block"><strong>Password:</strong> <%= request.getParameter("pass") %></div>
-        <div class="output-block"><strong>Favorite Programming (Radio):</strong> <%= request.getParameter("favProgramming") %></div>
-        <div class="output-block"><strong>Favorite Programming (Dropdown):</strong> <%= request.getParameter("favPr") %></div>
+        <div class="output-block"><strong>First Name:</strong> <%= session.getAttribute("f_name") %></div>
+        <div class="output-block"><strong>Last Name:</strong> <%= session.getAttribute("l_name") %></div>
+        <div class="output-block"><strong>Password:</strong> <%= session.getAttribute("pass") %></div>
+        <div class="output-block"><strong>Favorite Programming (Radio):</strong> <%= session.getAttribute("favProgramming") %></div>
+        <div class="output-block"><strong>Favorite Programming (Dropdown):</strong> <%= session.getAttribute("favPr") %></div>
 
         <div class="output-block">
             <strong>Favorite Programming (Checkbox):</strong>
             <ul>
                 <%
-                    String[] checkboxes = request.getParameterValues("favProgrammingWithCheckbox");
-                    if (checkboxes != null) {
-                        for (String checkbox : checkboxes) {
+                    String[] favs = (String[]) session.getAttribute("favProgrammingWithCheckbox");
+                    if (favs != null) {
+                        for (String item : favs) {
                 %>
-                    <li><%= checkbox %></li>
+                    <li><%= item %></li>
                 <%
                         }
                     } else {
@@ -35,7 +35,13 @@
             </ul>
         </div>
 
-        <a href="index.jsp">← Back to Form</a>
+        <a href="logout.jsp">Reset Form (Logout)</a>
+        
+        <form action="<%= request.getContextPath() %>/DBConnection" method="get">
+    <button type="submit">Check DB Connection</button>
+</form>
+        
+        
     </div>
 </body>
 </html>
