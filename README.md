@@ -21,6 +21,8 @@ INSERT INTO item (name, price) VALUES ('item1', 50);
 SELECT * FROM item;
 
 ```
+
+- Tested on Apache TomCat 9
  
 - java/com/my/controller/DBConnection.java
   - Tests DB Connection
